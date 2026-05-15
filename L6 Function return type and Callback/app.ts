@@ -63,3 +63,18 @@ function handleSum(n1:number,n2:number,cb:(num:number)=>void){
 console.log(handleSum(15,2,(sum)=>{
   console.log("Sum is ",sum);
 }));
+
+/*
+never Return Type
+Definition => never का मतलब है – “यह function कभी भी कोई value return नहीं करेगा।”  
+यह तब होता है जब function हमेशा error throw करता है या infinite loop चलता है।
+*/
+function throwError(message: string): never {
+  throw new Error(message);
+}
+
+function infiniteLoop(): never {
+  while (true) {
+    console.log("Running...");
+  }
+}
