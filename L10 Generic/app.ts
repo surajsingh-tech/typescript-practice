@@ -69,3 +69,61 @@ const numberBox: boxtype<number> = { value: 500 };
 const stringBox: boxtype<string> = { value: "This is string box" };
 console.log("numberBox is", numberBox);
 console.log("stringBox is", stringBox);
+
+//=================================================================Generic Default==================================================
+interface User<T = string> {
+  data: T;
+  status: boolean;
+}
+
+let User1: User<number> = { data: 52, status: true };
+let User2: User = { data: "vsdvds", status: false }; //Default Genrics
+let User3: User<object> = { data: { name: "Sonu" }, status: false };
+
+console.log("User3 is ", User3);
+
+//=====================================================Generics with class======================================
+class Container<T> {
+  private content: T;
+  constructor(content: T) {
+    this.content = content;
+  }
+  getContent(): T {
+    return this.content;
+  }
+}
+
+const res1 = new Container<number>(5);
+console.log("res 1 =>", res1);
+const res2 = new Container<string>("this is string");
+console.log("res 2 =>", res2);
+const res3 = new Container<object>({ name: "monu", age: 52 });
+console.log("res 2 =>", res3);
+
+//==========================================================Generics with array===============
+
+function arr<T>(ar: T[]): T[] {
+  return ar;
+}
+
+const r1 = arr<number>([4, 5, 10]);
+const r2 = arr<string>(["a", "b", "c"]);
+// const r3 = arr<Array>([[455]])
+const r3 = arr<object>([{ name: "suraj" }, { age: 12 }]);
+console.log(`r1 is ${r1} , r2 is ${r2}`);
+console.log("r3 is ", r3);
+
+//=================================================================generic with keyof=========================================
+/*keyof TypeScript का keyword है जो किसी object की सभी keys का union type बनाता है। */
+
+function getProperty<T extends object, K extends keyof T>(
+  obj: T,
+  key: K,
+): T[K] {
+  return obj[key];
+}
+
+const person1 = { name: "raghu", age: 52 };
+
+const resp = getProperty(person1, "age");
+console.log("resp is", resp);

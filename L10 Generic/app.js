@@ -50,3 +50,41 @@ var numberBox = { value: 500 };
 var stringBox = { value: "This is string box" };
 console.log("numberBox is", numberBox);
 console.log("stringBox is", stringBox);
+var User1 = { data: 52, status: true };
+var User2 = { data: "vsdvds", status: false }; //Default Genrics
+var User3 = { data: { name: "Sonu" }, status: false };
+console.log("User3 is ", User3);
+//=====================================================Generics with class======================================
+var Container = /** @class */ (function () {
+    function Container(content) {
+        this.content = content;
+    }
+    Container.prototype.getContent = function () {
+        return this.content;
+    };
+    return Container;
+}());
+var res1 = new Container(5);
+console.log("res 1 =>", res1);
+var res2 = new Container("this is string");
+console.log("res 2 =>", res2);
+var res3 = new Container({ name: "monu", age: 52 });
+console.log("res 2 =>", res3);
+//==========================================================Generics with array===============
+function arr(ar) {
+    return ar;
+}
+var r1 = arr([4, 5, 10]);
+var r2 = arr(["a", "b", "c"]);
+// const r3 = arr<Array>([[455]])
+var r3 = arr([{ name: "suraj" }, { age: 12 }]);
+console.log("r1 is ".concat(r1, " , r2 is ").concat(r2));
+console.log("r3 is ", r3);
+//=================================================================generic with keyof=========================================
+/*keyof TypeScript का keyword है जो किसी object की सभी keys का union type बनाता है। */
+function getProperty(obj, key) {
+    return obj[key];
+}
+var person1 = { name: "raghu", age: 52 };
+var resp = getProperty(person1, "age");
+console.log("resp is", resp);
